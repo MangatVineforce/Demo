@@ -1,0 +1,14 @@
+<div class="video-player">
+  <video
+    fireVideo
+    #VideoWidget
+    [src]="VIDEO_URL"
+    controls="true"
+    muted
+    width="600"
+  ></video>
+  <br />
+  <button (click)="skip(10)">Skip 10 Seconds</button>
+</div>
+
+<img [src]="defaultProfilePicture" class="profile-pic" />
