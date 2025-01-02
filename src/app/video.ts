@@ -1,13 +1,6 @@
 import { CommonModule } from '@angular/common';
-import {
-  Directive,
-  ElementRef,
-  inject,
-  Input,
-  NgModule,
-  Output,
-} from '@angular/core';
-import { of, fromEvent, combineLatest, merge, Observable } from 'rxjs';
+import { Directive, ElementRef, inject, NgModule, Output } from '@angular/core';
+import { fromEvent, merge } from 'rxjs';
 import { map, filter, startWith, mapTo } from 'rxjs/operators';
 
 enum VideoState {
@@ -31,7 +24,7 @@ function observeProperty(
   selector: 'video[fireVideo]',
 })
 export class VideoWidget {
-  public  el = inject(ElementRef<HTMLVideoElement>);
+  readonly el = inject(ElementRef<HTMLVideoElement>);
   @Output('playing')
   readonly play$ = fromEvent(this.el.nativeElement, 'play');
 
@@ -53,9 +46,6 @@ export class VideoWidget {
     'duration',
     'durationchange'
   ).pipe(map((v) => v * 1000));
-
-
-  
 
   /** Returns the current state of the element */
   readonly state$ = merge(
@@ -83,11 +73,6 @@ export class VideoWidget {
 
   play() {
     this.el.nativeElement.play();
-  }
-  skip(value: Observable<number>) {
-    value.subscribe((val) => {
-      this.duration$ = this.duration$.pipe(map((current) => current + val));
-    });
   }
 }
 

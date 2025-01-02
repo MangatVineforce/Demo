@@ -1,3 +1,11 @@
 .video-player {
-    padding: 100px;
+  padding: 100px;
+}
+p {
+  font-family: Lato;
+}
+
+.status-bar {
+  background-color: blue;
+  height: 24px;
 }
